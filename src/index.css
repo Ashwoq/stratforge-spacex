@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Urbanist, sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out, transform 0.2s ease-in-out,
+    background-color 0.3s ease-in-out, color 0.2s ease-in-out,
+    box-shadow 0.3s ease-in-out, text-shadow 0.35s ease-in-out,
+    border-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.9) !important;
+}
+
+@theme {
+  --breakpoint-xs: 400px;
+  --color-lightBlue: #33baff;
+  --color-primaryBlue: #01021e;
+
+  --animate-loadingBar: loadingBar 2s linear infinite;
+
+  @keyframes loadingBar {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@custom-variant mouse-hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
+@layer base {
+  h2 {
+    @apply text-4xl leading-none font-medium max-md:text-xl max-md:leading-6;
+  }
+}
+
+@layer utilities {
+  .bg-earth {
+    background-image: url("./assets/Images/bgEarth.webp");
+  }
+
+  .bg-masker {
+    background-image: url("./assets/SVG/bgMask.svg");
+  }
+
+  .bg-mask {
+    -webkit-mask-image: url("./assets/SVG/bgMask.svg");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 125% 125%;
+    -webkit-mask-position: center -150%;
+    -webkit-mask-composite: destination-in;
+
+    mask-image: url("./assets/SVG/bgMask.svg");
+    mask-repeat: no-repeat;
+    mask-size: 125% 125%;
+    mask-position: center -150%;
+    mask-composite: intersect;
+  }
+
+  .bg-lhsGlow {
+    @apply bg-[linear-gradient(109.05deg,rgba(255,255,255,0.9)_20.73%,rgba(179,222,255,0.55)_65.08%)] drop-shadow-[0_0_10px_rgba(256,256,256,0.4)];
+  }
+
+  .bg-rhsGlowInner {
+    @apply bg-[linear-gradient(180.34deg,rgba(103,189,255,0.17)_-49.26%,rgba(153,153,153,0)_105.55%)] shadow-[inset_0px_-2px_1px_rgba(102,189,255,0.14)];
+  }
+
+  .bg-rhsGlowOuter {
+    @apply bg-[linear-gradient(180deg,rgba(103,189,255,0.15)_-33.85%,rgba(103,189,255,0.05)_136.41%)] shadow-[inset_0px_-2px_1px_rgba(102,189,255,0.14)];
+  }
+
+  .text-xxs {
+    font-size: 0.7rem;
+    line-height: 0.9rem;
+  }
+
+  .bg-subpage {
+    background-image: linear-gradient(
+      to top left,
+      theme(colors.sky.800 / 0.8),
+      theme(colors.slate.950) 50%,
+      theme(colors.slate.950)
+    );
+  }
+
+  .bg-uniformGlow {
+    @apply bg-[radial-gradient(50%_50%_at_50%_50%,rgba(108,221,255,0)_0%,rgba(65,133,153,0.1)_100%)] shadow-[inset_0_0_5px_rgba(108,221,255,0.5),inset_0_0_10px_rgba(108,221,255,0.25)];
+  }
+
+  .bg-uniformGlowLight {
+    @apply bg-[radial-gradient(50%_50%_at_50%_50%,rgba(108,221,255,0)_0%,rgba(65,133,153,0.1)_100%)] shadow-[inset_0_0_3px_rgba(108,221,255,0.2),inset_0_0_10px_rgba(108,221,255,0.1)];
+  }
+
+  .text-color-subPage {
+    @apply text-transparent bg-linear-to-r from-sky-500 to-white bg-clip-text border-l-sky-500;
+  }
+
+  @keyframes fadeTo75 {
+    0%,
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  .fade-in-75 {
+    opacity: 1;
+    will-change: opacity;
+    animation-fill-mode: both;
+    animation: fadeTo75 2s ease-in-out 0.2s forwards;
+  }
+
+  @keyframes fadeTo75LHS {
+    0%,
+    60% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .fade-in-75LHS {
+    opacity: 1;
+  }
+
+  @media (width < 48rem) {
+    .bg-mask {
+      -webkit-mask-size: 275% 125%;
+      -webkit-mask-position: center -145%;
+
+      mask-size: 275% 125%;
+      mask-position: center -145%;
+    }
+
+    .fade-in-75LHS {
+      will-change: opacity, transform;
+      animation-fill-mode: both;
+      animation: fadeTo75LHS 3s ease-in-out 0s;
+    }
+  }
+}
