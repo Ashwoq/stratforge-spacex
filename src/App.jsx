@@ -45,9 +45,10 @@ const App = () => {
     };
   }, []);
 
+  if (loading) return <Loader loading={loading} />;
+
   return (
     <div className="min-h-screen w-full">
-      <Loader loading={loading} />
       <Header />
       <main>
         <Routes>

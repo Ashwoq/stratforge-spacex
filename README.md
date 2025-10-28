@@ -1,4 +1,4 @@
-# 🚀 SpaceX React Project
+# 🚀 SpaceX ReactJS Project
 
 A modern, responsive SpaceX-themed web application built with **Vite**, **ReactJS**, and **TailwindCSS**.  
 The project showcases SpaceX rockets, missions, and historical data with a cinematic, futuristic interface.
@@ -12,9 +12,9 @@ The project showcases SpaceX rockets, missions, and historical data with a cinem
 
 **Core:**
 
-- Vite — Fast bundler & dev server
-- ReactJS — Frontend framework
-- TailwindCSS — Utility-first CSS
+- Vite
+- ReactJS
+- TailwindCSS
 
 **Libraries Used:**
 
