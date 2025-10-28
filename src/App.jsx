@@ -36,12 +36,14 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const handleLoad = () => {
-      setLoading(false);
-    };
+    const handleLoad = () => setLoading(false);
     window.addEventListener("load", handleLoad);
+
+    const timeout = setTimeout(() => setLoading(false), 5000);
+
     return () => {
       window.removeEventListener("load", handleLoad);
+      clearTimeout(timeout);
     };
   }, []);
 
